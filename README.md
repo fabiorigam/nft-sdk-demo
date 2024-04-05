@@ -16,3 +16,5 @@ Assuming the contract is deployed at address `0xCONTRACT_ADDRESS` and we want to
 `0x70a08231000000000000000000000000ADDRESS_TO_CHECK_IN_HEX`
 
 Where ADDRESS_TO_CHECK_IN_HEX is the hexadecimal representation of the address we want to check. We can then make the eth_call request to the vechain node with this data payload to check the token balance of the address.
+
+It's possible to use the [VeWorld Dapp](https://veworld-dapp-vecha.in/) to deploy and mint sample NTFs.
