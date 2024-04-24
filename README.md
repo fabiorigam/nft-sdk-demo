@@ -31,9 +31,9 @@ In the JSON-RPC request for eth_call, the `from` and `to` parameters have specif
 
  ## Alternative without using the RPC Proxy
 
-An alternative is to use the following code without the need of a RPC Proxy:
+An alternative is to use the following code without the need of a RPC Proxy, using `balanceOf`:
 
- ```typescript
+```typescript
 import { HttpClient, ThorClient } from '@vechain/sdk-network';
 const abi = require('./abi.json');
 
@@ -56,4 +56,27 @@ async function main() {
 }
 
 main();
- ```
+```
+
+Another alternative using `ownerOf`:
+
+```typescript
+import { HttpClient, ThorClient } from '@vechain/sdk-network';
+const abi = require('./abi.json');
+
+async function main() {
+    // Initialize the Thor client (using testnet)
+    const httpClient = new HttpClient('https://testnet.vechain.org/');
+    const thorClient = new ThorClient(httpClient);
+
+    // Load contract using its address and ABI
+    const contract = thorClient.contracts.load('0x14ada3f89864fe651bddd1a95e55dffb3c729aef', abi);
+
+    // Check the owner of the NFT with tokenId '123'
+    await contract.read.ownerOf('123').then((res: any) => {
+        console.log("The owner of the NFT is: ", res);
+    });
+}
+
+main();
+```
